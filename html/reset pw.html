@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reset Password</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Reset Password</h2>
+    <form id="resetForm">
+      <input type="email" id="email" placeholder="Masukkan Email" required />
+      <input type="password" id="newPassword" placeholder="Password Baru" required />
+      <button type="submit">Ubah Password</button>
+    </form>
+    <a href="../index.html">Kembali ke Login</a>
+  </div>
+
+  <script>
+    document.getElementById("resetForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const newPassword = document.getElementById("newPassword").value;
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      let userIndex = users.findIndex(user => user.email === email);
+
+      if (userIndex !== -1) {
+        users[userIndex].password = newPassword;
+        localStorage.setItem("users", JSON.stringify(users));
+        alert("Password berhasil diubah!");
+        window.location.href = "../index.html";
+      } else {
+        alert("Email tidak ditemukan!");
+      }
+    });
+  </script>
+</body>
+</html>

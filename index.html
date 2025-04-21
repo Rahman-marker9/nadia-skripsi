@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-button:hover {
+      background-color: #1565c0;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .link a {
+      color: #1976d2;
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+    @media screen and (max-height: 500px) and (max-width: 900px) {
+  .container {
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    transform: scale(0.9); /* sedikit kecilkan supaya muat */
+  }
+
+  .form input, .form select, .form button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" id="email" class="form-input" placeholder="Email" required>
+      <input type="password" id="password" class="form-input" placeholder="Password" required>
+      <button type="submit" class="login-button">Login</button>
+    </form>
+    <div class="link">
+      Belum punya akun? <a href="html/regis.html">Daftar di sini</a><br>
+      <a href="html/reset pw.html">Lupa Password?</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        alert("Login berhasil!");
+
+        if (user.role === "murid") {
+          window.location.href = "html/dasboard siswa.html";
+        } else if (user.role === "guru") {
+          window.location.href = "html/dasbord.html";
+        } else {
+          alert("Peran pengguna tidak dikenal.");
+        }
+      } else {
+        alert("Email atau password salah.");
+      }
+
+      if (user) {
+  localStorage.setItem("loggedInUser", JSON.stringify(user));
+  alert("Login berhasil!");
+
+  // Tambahkan siswa ke daftar siswaOnline
+  if (user.role === "murid") {
+    let siswaOnline = JSON.parse(localStorage.getItem("siswaOnline")) || [];
+    if (!siswaOnline.includes(user.fullName)) {
+      siswaOnline.push(user.fullName);
+      localStorage.setItem("siswaOnline", JSON.stringify(siswaOnline));
+    }
+    window.location.href = "html/dasboard siswa.html";
+  } else if (user.role === "guru") {
+    window.location.href = "html/dasbord.html";
+  } else {
+    alert("Peran pengguna tidak dikenal.");
+  }
+}
+
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+header {
+  background-color: #337ab7;
+  padding: 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+header .header-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #23527c;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+main .main-image {
+  width: 50%;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #337ab7;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #666666;
+}
+
+/* Add some basic styling to the other pages */
+.tujuan,.video,.materi,.evaluasi,.diskusi,.profil_pengembang {
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+.tujuan h2,.video h2,.materi h2,.evaluasi h2,.diskusi h2,.profil_pengembang h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #337ab7;
+}
+
+.tujuan p,.video p,.materi p,.evaluasi p,.diskusi p,.profil_pengembang p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #666666;
+}
+
+/* Add some images to the other pages */
+.tujuan {
+  background-image: url('fluid-dynamics.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.video {
+  background-image: url('fluid-flow.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.materi {
+  background-image: url('fluid-mechanics.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.evaluasi {
+  background-image: url('fluid-dynamics-problem.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.diskusi {
+  background-image: url('fluid-dynamics-discussion.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.profil_pengembang {
+  background-image: url('developer-profile.jpg');
+  background-size: cover;
+  background-position: center;
+}

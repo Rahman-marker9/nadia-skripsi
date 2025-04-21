@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLUIDA DINAMIS</title>
+  <style>
+    body {
+      background-color: #e0f7fa;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #00796b;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      font-size: 18px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .logout-btn {
+  background-color: #d32f2f;
+  color: white;
+  text-decoration: none; /* Hilangkan garis bawah link */
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.logout-btn:hover {
+  background-color: #b71c1c;
+  transform: scale(1.05);
+}
+
+.dashboard-btn {
+  background-color: #d32f2f;
+color: white;
+text-decoration: none; /* Hilangkan garis bawah link */
+padding: 8px 15px;
+font-size: 14px;
+border-radius: 5px;
+cursor: pointer;
+transition: background 0.3s ease, transform 0.2s ease;
+display: inline-block;
+    }
+
+    .dashboard-btn:hover {
+      background-color: #b92929;
+      transform: scale(1.05);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+    }
+
+    .modal img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid #00796b;
+    }
+
+    .modal input {
+      margin-top: 10px;
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .modal button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .save-btn {
+      background-color: #00796b;
+    }
+
+    .cancel-btn {
+      background-color: #d32f2f;
+    }
+
+    .container {
+      width: 80%;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h1 {
+      text-align: center;
+      color: #00796b;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 48%;
+    }
+
+    .button {
+      padding: 15px;
+      background-color: #00796b;
+      color: #fff;
+      border: 1px solid #004d40;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+      display: block;
+    }
+
+    .button:hover {
+      background-color: #004d40;
+      transform: translateY(-5px);
+    }
+    .button i {
+      margin-right: 10px;
+    }
+
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      margin-top: 20px;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .physics-symbols {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .physics-symbol {
+      position: absolute;
+      font-size: 30px;
+      color: rgba(0, 0, 0, 0.7);
+      animation: floatSymbols 6s ease-in-out infinite;
+    }
+
+    @keyframes floatSymbols {
+      0% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(-30px); opacity: 0.7; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div id="programStudi">FKIP | S1-Pendidikan Fisika</div>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <div class="profile" onclick="openModal()">
+        <img id="profilePic" src="https://via.placeholder.com/40" alt="Profile Picture">
+        <div>
+          <div><strong id="namaUser">Nama Pengguna</strong></div>
+          <div id="nimUser">NIM</div>
+        </div>
+      </div>
+      <button class="dashboard-btn" onclick="keDashboard()">Masuk ke Dashboard</button>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>  
+      <div class="modal" id="profileModal">
+        <div class="modal-content">
+          <h3>Edit Profil</h3>
+          <img id="modalProfilePic" src="https://via.placeholder.com/40" alt="Profile Picture">
+          <input type="file" id="uploadPhoto" accept="image/*">
+          <input type="text" id="editNama" placeholder="Nama">
+          <input type="text" id="editNIM" placeholder="NIM">
+          <button onclick="saveProfile()">Simpan</button>
+          <button onclick="closeModal()">Batal</button>
+        </div>
+    </div>
+
+  <div class="container">
+    <h1>FLUIDA DINAMIS</h1>
+    <div class="button-container">
+      <div class="button-group">
+        <a href="materi.html" class="button">Materi</a>
+        <a href="kegiatan2.html" class="button">Kegiatan Pembelajaran</a>
+        <a href="simulasi 2.html" class="button">Simulasi</a>
+      </div>
+      <div class="button-group">
+        <a href="video.html" class="button">Video</a>
+        <a href="quiz.html" class="button">Quiz</a>
+        <a href="yuk.html" class="button">Forum Diskusi</a>
+      </div>
+    </div>
+    <div class="image-container">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Fluid Dynamics">
+      <div class="physics-symbols">
+        <div class="physics-symbol" style="top: 10%; left: 20%;">&#x2207;</div>
+ <div class="physics-symbol" style="top: 20%; left: 40%;">&#x3B8;</div>
+ <div class="physics-symbol" style="top: 30%; left: 60%;">&#x3C1;</div>
+ <div class="physics-symbol" style="top: 40%; left: 80%;">&#x3A9;</div>
+ <div class="physics-symbol" style="top: 50%; left: 30%;">&#x3B1;</div>
+ <div class="physics-symbol" style="top: 60%; left: 50%;">&#x3B2;</div>
+ <div class="physics-symbol" style="top: 70%; left: 70%;">&#x3C0;</div>
+ <div class="physics-symbol" style="top: 80%; left: 40%;">&#x3BB;</div>
+ <div class="physics-symbol" style="top: 90%; left: 60%;">&#x3D5;</div>
+ <div class="physics-symbol" style="top: 20%; left: 10%;">&#x3C9;</div>
+ <div class="brain-symbol" style="top: 50%; left: 40%;">
+   <img src="https://www.pngkit.com/png/full/514-5140072_brain-png-image-high-quality-brain-png.png" alt="Brain Symbol">
+ </div>
+  </div>
+  <script>
+    let userData = JSON.parse(localStorage.getItem("loggedInUser"));
+  
+    if (!userData) {
+      window.location.href = "../index.html";
+    }
+  
+    // Tampilkan data profil di navbar
+    const namaLengkap = userData.fullName || "Nama tidak tersedia";
+    const nimPengguna = userData.nim || "NIM belum diisi";
+    const fotoProfil = userData.foto || "https://via.placeholder.com/40";
+  
+    document.getElementById("namaUser").textContent = namaLengkap;
+    document.getElementById("nimUser").textContent = nimPengguna;
+    document.getElementById("profilePic").src = fotoProfil;
+  
+    function openModal() {
+      document.getElementById("profileModal").style.display = "flex";
+      document.getElementById("editNama").value = userData.fullName || "";
+      document.getElementById("editNIM").value = userData.nim || "";
+      document.getElementById("modalProfilePic").src = userData.foto || "https://via.placeholder.com/80";
+    }
+  
+    function closeModal() {
+      document.getElementById("profileModal").style.display = "none";
+    }
+  
+    function saveProfile() {
+      const newNama = document.getElementById("editNama").value;
+      const newNIM = document.getElementById("editNIM").value;
+      const fileInput = document.getElementById("uploadPhoto");
+  
+      if (fileInput.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          updateProfile(newNama, newNIM, e.target.result);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        updateProfile(newNama, newNIM, userData.foto);
+      }
+      closeModal();
+    }
+  
+    function updateProfile(nama, nim, foto) {
+      userData.fullName = nama;
+      userData.nim = nim;
+      userData.foto = foto;
+  
+      // Simpan kembali ke localStorage
+      localStorage.setItem("loggedInUser", JSON.stringify(userData));
+  
+      // Update tampilan navbar
+      document.getElementById("namaUser").textContent = nama;
+      document.getElementById("nimUser").textContent = nim;
+      document.getElementById("profilePic").src = foto;
+    }
+  
+    function keDashboard() {
+      if (userData) {
+        if (userData.role === "murid") {
+          window.location.href = "dasboard siswa.html";
+        } else if (userData.role === "guru") {
+          window.location.href = "dasbord.html";
+        } else {
+          alert("Role tidak dikenali.");
+        }
+      } else {
+        alert("Silakan login terlebih dahulu.");
+        window.location.href = "../index.html";
+      }
+    }
+  
+    function logout() {
+      if (userData && userData.fullName) {
+        // Hapus nama dari siswaOnline
+        let siswaOnline = JSON.parse(localStorage.getItem("siswaOnline")) || [];
+        siswaOnline = siswaOnline.filter(nama => nama !== userData.fullName);
+        localStorage.setItem("siswaOnline", JSON.stringify(siswaOnline));
+      }
+  
+      // Hapus data login
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "../index.html";
+    }
+  </script>
+  
+</body>
+</html>

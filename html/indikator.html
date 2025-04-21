@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KD dan CP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.unsplash.com/photo-1558979158-65a1eaa08691?ixlib=rb-1.2.1&q=80&fm=jpg&crop=e');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+    }
+    .menu {
+      width: 200px;
+      padding: 20px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+    .menu-button {
+      background-color: transparent;
+      color: #fff;
+      border: 1px solid #337ab7;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 50px;
+      margin-bottom: 10px;
+      text-align: left;
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .menu-button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .kd-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .kd-list li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    .kd-list li:last-child {
+      border-bottom: none;
+    }
+    .kd-list li:hover {
+      background-color: #f2f2f2;
+    }
+    .kd-list li a {
+      text-decoration: none;
+      color: #337ab7;
+    }
+    .kd-list li a:hover {
+      color: #23527c;
+    }
+    .icon {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+    .pagination {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .nav-button {
+      background-color: #337ab7;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 50px;
+      margin: 0 10px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .nav-button:hover {
+      background-color: #23527c;
+      transform: translateY(-5px);
+    }
+    .nav-button i {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="menu">
+      <a href="Home2.html" class="menu-button">
+        <i class="icon fa fa-home"></i> Beranda
+      </a>
+      <a href="/materi.html" class="menu-button">
+        <i class="icon fa fa-file-text"></i> Materi
+      </a>
+      <a href="/kuis.html" class="menu-button">
+        <i class="icon fa fa-question-circle"></i> Video
+      </a>
+      <a href="/forum.html" class="menu-button">
+        <i class="icon fa fa-users"></i> kuis
+      </a>
+      <a href="diskusi.html" class="menu-button">
+        <i class="icon fa fa-map"></i> Forum diskusi
+      </a>
+    </div>
+    <div class="content">
+      <h1>KD dan CP</h1>
+      <p>Kompetensi Dasar (KD) dan Indikator untuk Aritmetika Sosial:</p>
+      <ul class="kd-list">
+        <li><a href="#penjualan">Menganalisis penjualan dalam aritmetika sosial</a>
+          <ul>
+            <li>Menentukan harga jual dan harga beli</li>
+            <li>Menghitung keuntungan dan kerugian</li>
+            <li>Menghitung persentase keuntungan dan kerugian</li>
+          </ul>
+        </li>
+        <li><a href="#pembelian">Menganalisis pembelian dalam aritmetika sosial</a>
+          <ul>
+            <li>Menentukan harga beli dan harga jual</li>
+            <li>Menghitung potongan harga</li>
+            <li>Menghitung bruto dan neto</li>
+          </ul>
+        </li>
+        <li><a href="#potongan">Menganalisis potongan dalam aritmetika sosial</a>
+          <ul>
+            <li>Menentukan jenis-jenis potongan</li>
+            <li>Menghitung potongan harga</li>
+            <li>Menghitung bruto dan neto</li>
+          </ul>
+        </li>
+      </ul>
+      <div class="pagination">
+        <a href="/previousPage.html" class="nav-button">
+          <i class="fa fa-arrow-left"></i> Back
+        </a>
+        <a href="/nextPage.html" class="nav-button">
+          Next <i class="fa fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

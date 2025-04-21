@@ -1,0 +1,105 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Simulasi Fluida Dinamis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.unsplash.com/photo-1558979158-65a1eaa08691?ixlib=rb-1.2.1&q=80&fm=jpg&crop=e');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+    }
+    .menu {
+      width: 150px;
+      padding: 10px;
+      margin-right: 10px;
+    }
+    .menu-button {
+      background-color: transparent;
+      color: #fff;
+      border: 1px solid #337ab7;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 50px;
+      margin-bottom: 8px;
+      text-align: left;
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .menu-button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .iframe-container {
+      width: 100%;
+      height: 75vh;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      touch-action: none;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      transform-origin: center;
+    }
+    @media screen and (max-width: 768px) {
+      .menu {
+        width: 120px;
+        padding: 8px;
+      }
+      .menu-button {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+      .iframe-container {
+        height: 80vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="menu">
+      <a href="coba.html" class="menu-button">Beranda</a>
+      <a href="kegiatan2.html" class="menu-button">Kegiatan Pembelajaran</a>
+      <a href="video.html" class="menu-button">Vedio</a>
+      <a href="simulasi 2.html" class="menu-button">Simulasi</a>
+      <a href="diskusi2.html" class="menu-button">Diskusi</a>
+      <a href="quiz.html" class="menu-button">Quiz</a>
+    </div>
+    <div class="content">
+      <h1>Simulasi Fluida Dinamis</h1>
+      <div class="iframe-container">
+        <iframe id="canva-frame" src="https://www.canva.com/design/DAGaeWjjQfg/04qj_NcJ7Xks4CoM1eVRQw/view?embed" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

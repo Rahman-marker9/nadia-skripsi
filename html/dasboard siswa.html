@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Siswa</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #eef2f7;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 300px;
+      background-color: #ffffff;
+      padding: 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+    }
+
+    .sidebar img {
+      width: 120px;
+      height: auto;
+    }
+
+    .sidebar h2 {
+      font-size: 16px;
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 30px;
+    }
+
+    .navbar a {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 16px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      background-color: #2980b9;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    .info-box {
+      background-color: #ffffff;
+      border-left: 6px solid #2980b9;
+      padding: 1.5rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .presensi-box {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+    }
+
+    .presensi-box button {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .presensi-box button:hover {
+      background-color: #1e8449;
+    }
+
+    .status {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar Logo dan Judul Skripsi -->
+  <div class="sidebar">
+    <img src="LOGO ULM TERBARU GAES.png" alt="Logo Kampus" />
+    <h2>
+      Pengembangan Media Pembelajaran Berbasis Website Berorientasi Problem-Based Learning<br>
+      Untuk Meningkatkan Keterampilan Berpikir Kritis Siswa
+    </h2>
+  </div>
+
+  <!-- Konten Utama -->
+  <div class="content">
+    <div class="navbar">
+      <a href="coba.html">Kembali ke Beranda</a>
+    </div>
+
+    <h1>Dashboard Siswa</h1>
+    <p>Selamat datang, <span id="namaSiswa">Siswa</span>!</p>
+
+    <div class="info-box">
+      <h2>Status Presensi Hari Ini</h2>
+      <p id="statusPresensi">Belum Presensi</p>
+    </div>
+
+    <div class="presensi-box">
+      <button onclick="presensi()">Hadir Hari Ini</button>
+      <div class="status" id="konfirmasiPresensi"></div>
+    </div>
+  </div>
+
+  <script>
+    // Tampilkan nama siswa
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user && user.fullName) {
+      document.getElementById("namaSiswa").textContent = user.fullName;
+    }
+
+    // Cek status presensi berdasarkan tanggal
+    const today = new Date().toLocaleDateString();
+    const presensiStatus = localStorage.getItem("presensi_" + today);
+
+    if (presensiStatus === "hadir") {
+      document.getElementById("statusPresensi").textContent = "Sudah Hadir";
+    }
+
+    // Fungsi presensi
+    function presensi() {
+      localStorage.setItem("presensi_" + today, "hadir");
+      document.getElementById("statusPresensi").textContent = "Sudah Hadir";
+      document.getElementById("konfirmasiPresensi").textContent = "Presensi berhasil disimpan!";
+    }
+  </script>
+</body>
+</html>
